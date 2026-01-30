@@ -1,0 +1,42 @@
+.upload-container{
+  height:100vh;
+  background:#f4f7fb;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.upload-card{
+  background:white;
+  width:350px;
+  padding:25px;
+  border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+  text-align:center;
+}
+
+.upload-card h2{
+  margin-bottom:15px;
+}
+
+.upload-card input{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
+
+.upload-card button{
+  width:100%;
+  padding:10px;
+  background:#4facfe;
+  border:none;
+  color:white;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.upload-card button:hover{
+  background:#00c6ff;
+}
