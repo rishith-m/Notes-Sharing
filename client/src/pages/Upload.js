@@ -28,7 +28,7 @@ export default function Upload(){
     try{
 
       await axios.post(
-        "http://localhost:5000/api/notes",
+        "https://notes-sharing-n9n8.onrender.com",
         form,
         {
           headers:{

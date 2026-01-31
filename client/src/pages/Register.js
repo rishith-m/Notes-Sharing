@@ -14,7 +14,7 @@ export default function Register(){
     e.preventDefault();
 
     await axios.post(
-      "http://localhost:5000/api/auth/register",
+      "https://notes-sharing-n9n8.onrender.com",
       {name,email,password}
     );
 

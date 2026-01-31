@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import "./Dashboard.css";
 import { useNavigate } from "react-router-dom";
 
+const API = "https://notes-sharing-n9n8.onrender.com";
+
 export default function Dashboard(){
 
   const [notes,setNotes] = useState([]);
@@ -11,7 +13,7 @@ export default function Dashboard(){
   // Fetch Notes
   useEffect(()=>{
 
-    axios.get("http://localhost:5000/api/notes")
+    axios.get(`${API}/api/notes`)
     .then(res=>setNotes(res.data))
     .catch(err=>console.log(err));
 
@@ -85,7 +87,7 @@ export default function Dashboard(){
               </p>
 
               <a
-                href={`http://localhost:5000/uploads/${note.file}`}
+                href={`${API}/uploads/${note.file}`}
                 target="_blank"
                 rel="noreferrer"
               >

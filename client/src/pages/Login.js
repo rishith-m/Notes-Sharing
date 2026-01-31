@@ -13,7 +13,7 @@ export default function Login(){
     e.preventDefault();
 
     const res = await axios.post(
-      "http://localhost:5000/api/auth/login",
+      "https://notes-sharing-n9n8.onrender.com",
       {email,password}
     );
 
