@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
-
+import API from "../api";
 export default function Register(){
 
   const [name,setName]=useState("");
@@ -13,10 +13,7 @@ export default function Register(){
   const submit = async e =>{
     e.preventDefault();
 
-    await axios.post(
-      "https://notes-sharing-n9n8.onrender.com",
-      {name,email,password}
-    );
+    await axios.post(`${API}/api/auth/register`, data)
 
     nav("/");
   };

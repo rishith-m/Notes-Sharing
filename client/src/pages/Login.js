@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
-
+import API from "../api";
 export default function Login(){
 
   const [email,setEmail]=useState("");
@@ -12,10 +12,8 @@ export default function Login(){
   const submit = async e =>{
     e.preventDefault();
 
-    const res = await axios.post(
-      "https://notes-sharing-n9n8.onrender.com",
-      {email,password}
-    );
+    const res = await axios.post(`${API}/api/auth/login`, data)
+
 
     localStorage.setItem("token",res.data.token);
     nav("/dashboard");

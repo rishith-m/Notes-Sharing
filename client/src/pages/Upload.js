@@ -2,17 +2,18 @@ import { useState } from "react";
 import axios from "axios";
 import "./Upload.css";
 import { useNavigate } from "react-router-dom";
+import API from "../api";
 
 export default function Upload(){
 
-  const [title,setTitle] = useState("");
-  const [subject,setSubject] = useState("");
-  const [file,setFile] = useState(null);
+  const [title, setTitle] = useState("");
+  const [subject, setSubject] = useState("");
+  const [file, setFile] = useState(null);
 
   const nav = useNavigate();
   const token = localStorage.getItem("token");
 
-  const submit = async e =>{
+  const submit = async (e) => {
     e.preventDefault();
 
     if(!file){
@@ -25,15 +26,15 @@ export default function Upload(){
     form.append("subject", subject);
     form.append("file", file);
 
-    try{
+    try {
 
       await axios.post(
-        "https://notes-sharing-n9n8.onrender.com",
+        `${API}/api/notes`,
         form,
         {
-          headers:{
+          headers: {
             "x-auth-token": token,
-            "Content-Type":"multipart/form-data"
+            "Content-Type": "multipart/form-data"
           }
         }
       );
@@ -41,10 +42,10 @@ export default function Upload(){
       alert("Uploaded Successfully!");
       nav("/dashboard");
 
-    }catch(err){
+    } catch (err) {
 
-      console.log(err);
-      alert("Upload Failed");
+      console.log(err.response || err);
+      alert(err.response?.data || "Upload Failed");
 
     }
   };
@@ -59,24 +60,26 @@ export default function Upload(){
         <form onSubmit={submit}>
 
           <input
+            type="text"
             placeholder="Title"
             required
-            onChange={e=>setTitle(e.target.value)}
+            onChange={e => setTitle(e.target.value)}
           />
 
           <input
+            type="text"
             placeholder="Subject"
             required
-            onChange={e=>setSubject(e.target.value)}
+            onChange={e => setSubject(e.target.value)}
           />
 
           <input
             type="file"
             required
-            onChange={e=>setFile(e.target.files[0])}
+            onChange={e => setFile(e.target.files[0])}
           />
 
-          <button>Upload</button>
+          <button type="submit">Upload</button>
 
         </form>
 

@@ -2,9 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "./Dashboard.css";
 import { useNavigate } from "react-router-dom";
-
-const API = "https://notes-sharing-n9n8.onrender.com";
-
+import API from "../api";
 export default function Dashboard(){
 
   const [notes,setNotes] = useState([]);
@@ -87,7 +85,7 @@ export default function Dashboard(){
               </p>
 
               <a
-                href={`${API}/uploads/${note.file}`}
+                href={`http://localhost:5000/uploads/${note.file}`}
                 target="_blank"
                 rel="noreferrer"
               >
