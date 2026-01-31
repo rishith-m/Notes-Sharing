@@ -13,7 +13,7 @@ export default function Register(){
   const submit = async e =>{
     e.preventDefault();
 
-    await axios.post(`${API}/api/auth/register`, data)
+    await axios.post('${API}/api/auth/register', data)
 
     nav("/");
   };

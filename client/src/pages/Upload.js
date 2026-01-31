@@ -29,7 +29,7 @@ export default function Upload(){
     try {
 
       await axios.post(
-        `${API}/api/notes`,
+        '${API}/api/notes',
         form,
         {
           headers: {

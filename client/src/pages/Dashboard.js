@@ -11,7 +11,7 @@ export default function Dashboard(){
   // Fetch Notes
   useEffect(()=>{
 
-    axios.get(`${API}/api/notes`)
+    axios.get('${API}/api/notes')
     .then(res=>setNotes(res.data))
     .catch(err=>console.log(err));
 
