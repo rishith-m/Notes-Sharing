@@ -2,20 +2,40 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
-import API from "../api";
+
+const API = "https://notes-sharing-n9n8.onrender.com";
+
 export default function Register(){
 
-  const [name,setName]=useState("");
-  const [email,setEmail]=useState("");
-  const [password,setPassword]=useState("");
+  const [name,setName] = useState("");
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
+
   const nav = useNavigate();
 
-  const submit = async e =>{
+  const submit = async (e) => {
     e.preventDefault();
 
-    await axios.post('${API}/api/auth/register', data)
+    try{
 
-    nav("/");
+      const data = {
+        name,
+        email,
+        password
+      };
+
+      await axios.post(
+        `${API}/api/auth/register`,
+        data
+      );
+
+      alert("Registered Successfully!");
+      nav("/");
+
+    }catch(err){
+      console.log(err);
+      alert("Register Failed");
+    }
   };
 
   return (
@@ -29,8 +49,9 @@ export default function Register(){
 
           <input
             type="text"
-            placeholder="Full Name"
+            placeholder="Name"
             required
+            value={name}
             onChange={e=>setName(e.target.value)}
           />
 
@@ -38,6 +59,7 @@ export default function Register(){
             type="email"
             placeholder="Email"
             required
+            value={email}
             onChange={e=>setEmail(e.target.value)}
           />
 
@@ -45,16 +67,15 @@ export default function Register(){
             type="password"
             placeholder="Password"
             required
+            value={password}
             onChange={e=>setPassword(e.target.value)}
           />
 
-          <button type="submit">Register</button>
+          <button type="submit">
+            Register
+          </button>
 
         </form>
-
-        <p>
-          Already have an account? <a href="/">Login</a>
-        </p>
 
       </div>
 
