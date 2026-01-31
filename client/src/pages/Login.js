@@ -12,7 +12,7 @@ export default function Login(){
   const submit = async e =>{
     e.preventDefault();
 
-    const res = await axios.post('${API}/api/auth/login', data)
+    const res = await axios.post('${API}/api/auth/login', res.data)
 
 
     localStorage.setItem("token",res.data.token);
