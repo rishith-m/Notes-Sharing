@@ -74,7 +74,7 @@ export default function Dashboard() {
                 href={`https://notes-sharing-n9n8.onrender.com/uploads/${note.file}`}
                 target="_blank"
                 rel="noreferrer"
-              >
+              >open
               </a>
             </div>
           ))}
