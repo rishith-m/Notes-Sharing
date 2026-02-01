@@ -71,11 +71,10 @@ export default function Dashboard() {
               </p>
 
               <a
-                href={`http://localhost:5000/uploads/${note.file}`}
+                href={`https://notes-sharing-n9n8.onrender.com/uploads/${note.file}`}
                 target="_blank"
                 rel="noreferrer"
               >
-                Open
               </a>
             </div>
           ))}
