@@ -4,8 +4,7 @@ import "./Upload.css";
 import { useNavigate } from "react-router-dom";
 import API from "../api";
 
-export default function Upload(){
-
+export default function Upload() {
   const [title, setTitle] = useState("");
   const [subject, setSubject] = useState("");
   const [file, setFile] = useState(null);
@@ -16,7 +15,7 @@ export default function Upload(){
   const submit = async (e) => {
     e.preventDefault();
 
-    if(!file){
+    if (!file) {
       alert("Please select a file");
       return;
     }
@@ -27,64 +26,56 @@ export default function Upload(){
     form.append("file", file);
 
     try {
-
       await axios.post(
-        '${API}/api/notes',
+        `${API}/api/notes`, // ✅ Fixed template string
         form,
         {
           headers: {
             "x-auth-token": token,
-            "Content-Type": "multipart/form-data"
-          }
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
 
       alert("Uploaded Successfully!");
       nav("/dashboard");
-
     } catch (err) {
-
       console.log(err.response || err);
       alert(err.response?.data || "Upload Failed");
-
     }
   };
 
   return (
     <div className="upload-container">
-
       <div className="upload-card">
-
         <h2>Upload Notes</h2>
 
         <form onSubmit={submit}>
-
           <input
             type="text"
             placeholder="Title"
             required
-            onChange={e => setTitle(e.target.value)}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
 
           <input
             type="text"
             placeholder="Subject"
             required
-            onChange={e => setSubject(e.target.value)}
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
           />
 
           <input
             type="file"
             required
-            onChange={e => setFile(e.target.files[0])}
+            onChange={(e) => setFile(e.target.files[0])}
           />
 
           <button type="submit">Upload</button>
-
         </form>
-
       </div>
-
     </div>
   );
 }
